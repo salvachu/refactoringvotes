@@ -23,5 +23,8 @@ def count_votes(file_path):
     for candidate, total_votes in results.items():
         print(f"{candidate}: {total_votes} votes")
 
+    sortedbyvotes = sorted(results.items(), key=lambda item:item[1], reverse=True)
+    print(f"winner is {sortedbyvotes[0][0]}")
+
 # Example usage
 count_votes('votes.csv')

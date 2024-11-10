@@ -19,7 +19,8 @@ class TestVoteCounter(unittest.TestCase):
         # Expected output after tallying votes
         mock_print.assert_any_call("Alice: 3200 votes")
         mock_print.assert_any_call("Bob: 3250 votes")
-        self.assertEqual(mock_print.call_count, 2)
+        mock_print.assert_any_call("winner is Bob")
+        self.assertEqual(mock_print.call_count, 3)
 
     @patch("builtins.print")
     def test_count_votes_invalid_votes(self, mock_print):
@@ -35,7 +36,8 @@ class TestVoteCounter(unittest.TestCase):
         # Expect Alice to be skipped due to invalid data, only Bob's votes should print correctly
         mock_print.assert_any_call("Bob: 3250 votes")
         mock_print.assert_any_call("Alice: 2000 votes")
-        self.assertEqual(mock_print.call_count, 2)
+        mock_print.assert_any_call("winner is Bob")
+        self.assertEqual(mock_print.call_count, 3)
 
 if __name__ == "__main__":
     unittest.main()
